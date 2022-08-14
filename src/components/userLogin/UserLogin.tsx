@@ -1,17 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Form, Typography, Button } from "antd";
+import { Form, Typography, Button, message } from "antd";
+import { useDispatch } from "react-redux";
 
 import "./styles/userLogin.css";
 import UserLoginForm from "../forms/UserLoginForm";
 import { tailFormItemLayout } from "../forms/common";
 import logo from "../../assets/logo.png";
+import { loginUser } from "../../services/userService";
+import { setUserAuthState } from "../../redux/slice/userAuthenticationSlice";
 
 const { Title } = Typography;
 
 const UserLogin: React.FC = () => {
+  const dispatch = useDispatch();
+
   const onSubmit = async (values: any) => {
-    console.log(values);
+    const data = { email: values.email, password: values.password };
+    await loginUser(data)
+      .then(() => {
+        dispatch(setUserAuthState(true));
+        message.success("User logged in successfully.", 5);
+      })
+      .catch((err) => {
+        const errMsg =
+          err.response.status === 401
+            ? err.response.data.message
+            : "unexpected error occurred. Please try agin later!";
+        message.error({
+          content: errMsg,
+          style: {
+            marginTop: "13%",
+          },
+          duration: 5,
+        });
+      });
   };
   const onSubmitFail = async (values: any) => {
     console.log(values);
