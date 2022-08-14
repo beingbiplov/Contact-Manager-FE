@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Form, Typography, Button, message } from "antd";
 
-import "./styles/userRegistration.css";
 import UserRegistrationForm from "../forms/UserRegistrationForm";
+import "./styles/userRegistration.css";
 import { formItemLayout, tailFormItemLayout } from "../forms/common";
 import { registerUser } from "../../services/userService";
 
@@ -34,9 +35,9 @@ const UserRegistration: React.FC = () => {
       });
   };
   return (
-    <div>
+    <div className="main-form-div">
       <Title className="container_title centered_text" level={4}>
-        Create Account{" "}
+        Create Account
       </Title>
       <div className="container">
         <Form
@@ -55,7 +56,9 @@ const UserRegistration: React.FC = () => {
             >
               Register
             </Button>
-            <Button className="defaultBtn">Log In</Button>
+            <Link to="/login">
+              <Button className="defaultBtn">Log In</Button>
+            </Link>
           </Form.Item>
         </Form>
       </div>
