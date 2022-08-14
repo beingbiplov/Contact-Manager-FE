@@ -9,6 +9,7 @@ import { tailFormItemLayout } from "../forms/common";
 import logo from "../../assets/logo.png";
 import { loginUser } from "../../services/userService";
 import { setUserAuthState } from "../../redux/slice/userAuthenticationSlice";
+import { setCookieOnLogin } from "../../cookie/authCookie";
 
 const { Title } = Typography;
 
@@ -18,7 +19,8 @@ const UserLogin: React.FC = () => {
   const onSubmit = async (values: any) => {
     const data = { email: values.email, password: values.password };
     await loginUser(data)
-      .then(() => {
+      .then((data) => {
+        setCookieOnLogin(data.data);
         dispatch(setUserAuthState(true));
         message.success("User logged in successfully.", 5);
       })
