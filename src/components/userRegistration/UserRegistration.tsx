@@ -1,17 +1,33 @@
 import React from "react";
-import { Form, Typography, Button } from "antd";
+import { Form, Typography, Button, message } from "antd";
 
 import "./styles/userRegistration.css";
 import UserRegistrationForm from "../forms/UserRegistrationForm";
 import { formItemLayout, tailFormItemLayout } from "../forms/common";
+import { registerUser } from "../../services/userService";
 
 const { Title } = Typography;
 
 const UserRegistration: React.FC = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const onSubmit = async (values: any) => {
+    await registerUser(values)
+      .then(() => {
+        message.success(
+          "User registered successfully. Please log in to continue.",
+          5
+        );
+      })
+      .catch((err) => {
+        message.error({
+          content: err.response.data.message,
+          style: {
+            marginTop: "8%",
+          },
+          duration: 5,
+        });
+      });
   };
   return (
     <div>
@@ -23,7 +39,7 @@ const UserRegistration: React.FC = () => {
           {...formItemLayout}
           form={form}
           name="register"
-          onFinish={onFinish}
+          onFinish={onSubmit}
           scrollToFirstError
         >
           <UserRegistrationForm />
