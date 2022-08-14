@@ -91,7 +91,7 @@ const App: React.FC = () => {
         {...tailFormItemLayout}
       >
         <Checkbox>
-          I have read and agree to the <a href="">Terms of service.</a>
+          I have read and agree to the <a href="/register">Terms of service.</a>
         </Checkbox>
       </Form.Item>
     </React.Fragment>

@@ -20,8 +20,12 @@ const UserRegistration: React.FC = () => {
         );
       })
       .catch((err) => {
+        const errMsg =
+          err.response.status === 409
+            ? err.response.data.message
+            : "unexpected error occurred. Please try agin later!";
         message.error({
-          content: err.response.data.message,
+          content: errMsg,
           style: {
             marginTop: "8%",
           },
