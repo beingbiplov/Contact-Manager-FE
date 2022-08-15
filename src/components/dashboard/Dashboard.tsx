@@ -1,10 +1,9 @@
-import { SmileOutlined } from "@ant-design/icons";
-import { Button, Result } from "antd";
 import React, { useEffect } from "react";
 
 import { verifyToken } from "../../services/userService";
 import Navigation from "./Navigation";
 import ContactCard from "./ContactCard";
+import AddContact from "./AddContact";
 
 const Dashboard: React.FC = () => {
   useEffect(() => {
@@ -14,6 +13,7 @@ const Dashboard: React.FC = () => {
     <div>
       <Navigation />
       <div className="content-section">
+        <AddContact />
         <ContactCard />
       </div>
     </div>

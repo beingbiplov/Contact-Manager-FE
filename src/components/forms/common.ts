@@ -20,3 +20,16 @@ export const tailFormItemLayout = {
     },
   },
 };
+
+export const tailFormItemLayout2 = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 24,
+      offset: 8,
+    },
+  },
+};
