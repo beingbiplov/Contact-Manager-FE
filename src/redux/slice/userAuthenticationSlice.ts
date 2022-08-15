@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { authStatusInterface } from "../interface/authenticationInterface";
+import { checkUserAuthentication } from "../../cookie/authCookie";
 
 const initialState = (): authStatusInterface => {
-  return { isAuthenticated: false };
+  return { isAuthenticated: checkUserAuthentication() };
 };
 
 export const userAuthenticationSlice = createSlice({
