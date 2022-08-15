@@ -1,0 +1,9 @@
+.contacts-load-screen {
+  display: block;
+  width: 60%;
+  margin: 50px auto;
+}
+
+.loading-skeleton{
+  margin-bottom: 40px;
+}

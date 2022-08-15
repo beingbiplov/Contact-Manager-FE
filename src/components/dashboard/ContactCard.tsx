@@ -2,17 +2,20 @@ import {
   EditOutlined,
   DeleteOutlined,
   PhoneOutlined,
-  HomeOutlined,
   UserOutlined,
   MailOutlined,
   ProfileOutlined,
+  HeartOutlined,
+  HeartFilled,
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 import React from "react";
 
 import "./styles/conatactCard.css";
+import { contactInterfaceProps } from "./interface/contactInterface";
 
-const ContactCard: React.FC = () => {
+const ContactCard: React.FC<contactInterfaceProps> = (contactData) => {
+  const data = contactData.data;
   const removeContact = (values: any) => {
     console.log(values);
   };
@@ -37,33 +40,38 @@ const ContactCard: React.FC = () => {
 
         <div className="contactCard-top-right">
           <p>
-            <UserOutlined />{" "}
+            <UserOutlined />
             <span className="contact-details contact-details-head">
-              Biplov Sharma
+              {data.name}
             </span>
           </p>
           <p>
-            <PhoneOutlined />{" "}
-            <span className="contact-details"> 9874662155</span>
-          </p>
-          <p>
-            <HomeOutlined />{" "}
-            <span className="contact-details"> 9874662155</span>
-          </p>
-
-          <p>
-            <MailOutlined />{" "}
+            <PhoneOutlined />
             <span className="contact-details">
-              <a href="mailto:someone@example.com"> abcas@gmail.com </a>
+              {" "}
+              {data.phone_number} ({data.label})
             </span>
           </p>
           <p>
-            <ProfileOutlined />{" "}
-            <span className="contact-details"> Kathmandu, Nepal</span>
+            <MailOutlined />
+            <span className="contact-details">
+              <a href="mailto:someone@example.com"> {data.email} </a>
+            </span>
+          </p>
+          <p>
+            <ProfileOutlined />
+            <span className="contact-details"> {data.address}</span>
+          </p>
+          <p>
+            Fav:
+            {data.is_favorite ? (
+              <HeartFilled className="contact-details heart heart_full" />
+            ) : (
+              <HeartOutlined className="contact-details heart" />
+            )}
           </p>
         </div>
       </div>
-      {/* <Meta title="Biplov Sharma" description="" /> */}
     </Card>
   );
 };

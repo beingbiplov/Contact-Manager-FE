@@ -14,3 +14,10 @@ export const postRequest = async (
   });
   return res;
 };
+
+export const getRequest = async (url: string, token: string = "") => {
+  const res = await server.get(url, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res;
+};
