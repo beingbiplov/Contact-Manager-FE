@@ -1,0 +1,28 @@
+.contactCard-top{
+  padding-bottom: 25px;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.contactCard-top-right {
+  padding-left: 30px;
+  padding-top: 20px;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.contact-avatar {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.contact-details{ 
+  padding-left: 15px;
+  color: rgb(103, 99, 99)
+}
+
+.contact-details-head {
+  font-weight: bolder;
+  font-size: 1.2em;
+  color: black;
+}

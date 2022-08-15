@@ -22,3 +22,7 @@ body {
   color: var(--primary-color);
   border-color: var(--primary-color);
 }
+
+a {
+  color: var(--primary-color);
+}

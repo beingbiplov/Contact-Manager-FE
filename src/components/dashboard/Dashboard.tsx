@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 
 import { verifyToken } from "../../services/userService";
 import Navigation from "./Navigation";
+import ContactCard from "./ContactCard";
 
 const Dashboard: React.FC = () => {
   useEffect(() => {
@@ -12,15 +13,9 @@ const Dashboard: React.FC = () => {
   return (
     <div>
       <Navigation />
-      <Result
-        icon={<SmileOutlined />}
-        title="Work in progress!!"
-        extra={
-          <Button className="primaryBtn" type="primary">
-            Next
-          </Button>
-        }
-      />
+      <div className="content-section">
+        <ContactCard />
+      </div>
     </div>
   );
 };
