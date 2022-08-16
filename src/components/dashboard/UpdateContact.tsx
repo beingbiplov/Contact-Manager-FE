@@ -34,7 +34,7 @@ const UpdateContact: React.FC<contactWithReloaderProps> = ({
     await verifyToken().then(() => {});
     let dataToUpdate = {
       contact_id: data.contact_id,
-      name: data.name,
+      name: values.name,
       phone: {
         phone_id: data.phone_id,
         phone_number: values.phone.phone_number,
@@ -45,7 +45,6 @@ const UpdateContact: React.FC<contactWithReloaderProps> = ({
       is_favorite: values.is_favorite,
       picture: updatedPicture,
     };
-    console.log(dataToUpdate);
 
     await updateContact(data.contact_id, dataToUpdate)
       .then(() => {
