@@ -14,6 +14,9 @@ const UpdateContact: React.FC<contactWithReloaderProps> = ({
   reloadHandler,
 }) => {
   const [visible, setVisible] = useState(false);
+  const [updatedPicture, setUpdatedPicture] = useState<
+    string | ArrayBuffer | null
+  >(null);
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const initialContactData = {
@@ -28,9 +31,10 @@ const UpdateContact: React.FC<contactWithReloaderProps> = ({
   };
 
   const onSubmit = async (values: any) => {
-    await verifyToken();
-    const dataToUpdate = {
-      contact_id: values.contact_id,
+    await verifyToken().then(() => {});
+    let dataToUpdate = {
+      contact_id: data.contact_id,
+      name: data.name,
       phone: {
         phone_id: data.phone_id,
         phone_number: values.phone.phone_number,
@@ -39,6 +43,7 @@ const UpdateContact: React.FC<contactWithReloaderProps> = ({
       email: values.email,
       address: values.address,
       is_favorite: values.is_favorite,
+      picture: updatedPicture,
     };
     console.log(dataToUpdate);
 
@@ -59,6 +64,10 @@ const UpdateContact: React.FC<contactWithReloaderProps> = ({
           duration: 5,
         });
       });
+  };
+
+  const setPictureToState = (data: string | ArrayBuffer | null) => {
+    setUpdatedPicture(data);
   };
 
   return (
@@ -88,7 +97,7 @@ const UpdateContact: React.FC<contactWithReloaderProps> = ({
           initialValues={initialContactData}
           scrollToFirstError
         >
-          <ContactForm />
+          <ContactForm setPicture={setPictureToState} />
           <Form.Item {...tailFormItemLayout2}>
             <Button className="primaryBtn" type="primary" htmlType="submit">
               Save

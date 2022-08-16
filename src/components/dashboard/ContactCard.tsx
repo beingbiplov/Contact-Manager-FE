@@ -16,24 +16,18 @@ import { contactInterfaceProps } from "./interface/contactInterface";
 
 const ContactCard: React.FC<contactInterfaceProps> = (contactData) => {
   const data = contactData.data;
-  const removeContact = (values: any) => {
-    console.log(values);
-  };
+  let avatarUrl: string;
+  if (data.picture) {
+    avatarUrl = data.picture;
+  } else {
+    avatarUrl = "https://joeschmoe.io/api/v1/random";
+  }
 
-  const editContact = (values: any) => {
-    console.log(values);
-  };
   return (
-    <Card
-      style={{ width: 400 }}
-      actions={[
-        <EditOutlined key="edit" onClick={() => editContact(1)} />,
-        <DeleteOutlined key="delete" onClick={() => removeContact(1)} />,
-      ]}
-    >
+    <Card style={{ width: 400 }}>
       <div className="contactCard-top">
         <Avatar
-          src="https://joeschmoe.io/api/v1/random"
+          src={avatarUrl}
           size={{ xs: 32, sm: 48, md: 60, lg: 100, xl: 116, xxl: 136 }}
           className="contact-avatar"
         />

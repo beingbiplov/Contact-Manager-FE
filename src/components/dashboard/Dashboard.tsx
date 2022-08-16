@@ -22,12 +22,17 @@ const Dashboard: React.FC = () => {
       });
   };
 
+  const loadData = async () => {
+    await verifyToken().then(() => {
+      getContactData();
+    });
+  };
+
   const handleReload = () => {
     setReload((current) => !current);
   };
   useEffect(() => {
-    verifyToken();
-    getContactData();
+    loadData();
   }, [reload]);
 
   if (data) {
@@ -37,7 +42,6 @@ const Dashboard: React.FC = () => {
         <div className="content-section">
           <AddContact reloadHandler={handleReload} />
           <ContactList data={data} handler={handleReload} />
-          {/* <ContactCard /> */}
         </div>
       </div>
     );

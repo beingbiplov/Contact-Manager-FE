@@ -50,15 +50,15 @@ export const getAccessTokenFromRefresh = async () => {
   }
 };
 
-export const verifyToken = () => {
+export const verifyToken = async () => {
   const token = getAccessTokenFromCookie();
 
   if (token) {
     const data = jwt_decode(token) as tokenDecodeInterface;
     if (Math.floor(Date.now() / 1000) >= data.exp) {
-      getAccessTokenFromRefresh();
+      await getAccessTokenFromRefresh();
     }
   } else {
-    getAccessTokenFromRefresh();
+    await getAccessTokenFromRefresh();
   }
 };
