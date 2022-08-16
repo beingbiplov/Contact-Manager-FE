@@ -5,7 +5,27 @@ import React from "react";
 
 const { Option } = Select;
 
-const ContactForm: React.FC = () => {
+interface picProps {
+  setPicture: (data: string | ArrayBuffer | null) => void;
+}
+
+const ContactForm: React.FC<picProps> = ({ setPicture }) => {
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+
+    const file = e.target.files[0];
+    setFile(file);
+  };
+
+  const setFile = (file: File) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPicture(reader.result);
+    };
+  };
   return (
     <React.Fragment>
       <Form.Item
@@ -80,9 +100,16 @@ const ContactForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item name="picture" label="Picture" valuePropName="checked">
-        <Upload>
+        <input
+          type="file"
+          className="form-control"
+          id="image"
+          name="image"
+          onChange={handleFileInputChange}
+        />
+        {/* <Upload maxCount={1} onChange={handleFileInputChange}>
           <Button icon={<UploadOutlined />}>Click to Upload</Button>
-        </Upload>
+        </Upload> */}
       </Form.Item>
     </React.Fragment>
   );

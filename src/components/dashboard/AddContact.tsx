@@ -11,11 +11,25 @@ import { ReloadHandlerProps } from "./interface/contactInterface";
 
 const AddContact: React.FC<ReloadHandlerProps> = ({ reloadHandler }) => {
   const [visible, setVisible] = useState(false);
+  const [picture, setPicture] = useState<string | ArrayBuffer | null>(null);
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
+  const initialContactData = {
+    name: "",
+    phone: {
+      phone_number: "",
+      label: "cell",
+    },
+    email: "",
+    address: "",
+    is_favorite: false,
+  };
+
   const onSubmit = async (values: any) => {
     await verifyToken();
+    values.picture = picture;
+
     await addContact(values)
       .then(() => {
         setVisible(false);
@@ -33,6 +47,10 @@ const AddContact: React.FC<ReloadHandlerProps> = ({ reloadHandler }) => {
           duration: 5,
         });
       });
+  };
+
+  const setPictureToState = (data: string | ArrayBuffer | null) => {
+    setPicture(data);
   };
 
   return (
@@ -59,9 +77,10 @@ const AddContact: React.FC<ReloadHandlerProps> = ({ reloadHandler }) => {
           form={form}
           name="add-contact"
           onFinish={onSubmit}
+          initialValues={initialContactData}
           scrollToFirstError
         >
-          <ContactForm />
+          <ContactForm setPicture={setPictureToState} />
           <Form.Item {...tailFormItemLayout2}>
             <Button className="primaryBtn" type="primary" htmlType="submit">
               Add contact
