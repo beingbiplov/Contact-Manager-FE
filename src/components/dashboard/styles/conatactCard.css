@@ -1,0 +1,44 @@
+.contactCard-top{
+  display: flex;
+  box-sizing: border-box;
+}
+
+.contactCard-top-right {
+  padding-left: 30px;
+  padding-top: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.contact-avatar {
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.contact-details{ 
+  padding-left: 15px;
+  color: rgb(103, 99, 99)
+}
+
+.contact-details-head {
+  font-weight: bolder;
+  font-size: 1.2em;
+  color: black;
+}
+
+.card_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.contact-card{
+  margin: 25px 0;
+}
+
+.heart {
+  font-size: 16px;
+}
+.heart_full{
+  color: var(--primary-color);
+}

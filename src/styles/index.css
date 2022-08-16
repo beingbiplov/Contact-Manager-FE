@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root{
-  --primary-color: #3fb5f5
+  --primary-color: #3fb5f5;
+  --secondary-color: #928c8c;
 }
 
 body {
@@ -16,9 +17,35 @@ body {
 .primaryBtn{
   background-color: var(--primary-color);
   border-radius: 3px;
+  transition: 1s;
+  border-top: var(--primary-color);
 }
 
 .defaultBtn:hover {
   color: var(--primary-color);
   border-color: var(--primary-color);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+.secondaryBtn{
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  border-radius: 3px;
+  transition: 1s;
+}
+
+.secondaryBtn:hover, .secondaryBtn:focus {
+  background-color: #706b6b;
+  border-color: #706b6b;
+}
+
+.deleteBtn{
+  transition: 1s;
+}
+.deleteBtn:hover{
+  color: red;
+  border-color: red;
 }

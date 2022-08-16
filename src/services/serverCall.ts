@@ -14,3 +14,28 @@ export const postRequest = async (
   });
   return res;
 };
+
+export const getRequest = async (url: string, token: string = "") => {
+  const res = await server.get(url, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res;
+};
+
+export const deleteRequest = async (url: string, token: string = "") => {
+  const res = await server.delete(url, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res;
+};
+
+export const putRequest = async (
+  url: string,
+  data: any,
+  token: string = ""
+) => {
+  const res = await server.put(url, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res;
+};
