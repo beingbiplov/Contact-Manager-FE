@@ -24,3 +24,7 @@ export interface contactIdProps {
 export interface contactInterfaceProps {
   data: ContactInterface;
 }
+
+export interface ReloadHandlerProps {
+  reloadHandler: () => void;
+}

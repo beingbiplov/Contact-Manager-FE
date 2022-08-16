@@ -1,5 +1,5 @@
 import { getAccessTokenFromCookie } from "../cookie/authCookie";
-import { postRequest, getRequest } from "./serverCall";
+import { postRequest, getRequest, deleteRequest } from "./serverCall";
 
 export const addContact = async (data: any) => {
   const token = getAccessTokenFromCookie();
@@ -22,6 +22,15 @@ export const getContacts = async () => {
 export const getContact = async (id: number) => {
   const token = getAccessTokenFromCookie();
   const res = await getRequest(`/contacts/${id}`, token).catch((err) => {
+    throw err;
+  });
+
+  return res;
+};
+
+export const removeContact = async (id: number) => {
+  const token = getAccessTokenFromCookie();
+  const res = await deleteRequest(`/contacts/${id}`, token).catch((err) => {
     throw err;
   });
 

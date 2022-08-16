@@ -7,8 +7,9 @@ import { formItemLayout, tailFormItemLayout2 } from "../forms/common";
 import "./styles/common.css";
 import { addContact } from "../../services/contactService";
 import { verifyToken } from "../../services/userService";
+import { ReloadHandlerProps } from "./interface/contactInterface";
 
-const AddContact: React.FC = () => {
+const AddContact: React.FC<ReloadHandlerProps> = ({ reloadHandler }) => {
   const [visible, setVisible] = useState(false);
   const [form] = Form.useForm();
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const AddContact: React.FC = () => {
       .then(() => {
         setVisible(false);
         navigate("/");
+        reloadHandler();
         message.success("Contact successfully added.", 5);
       })
       .catch((err) => {

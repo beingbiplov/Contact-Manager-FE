@@ -1,26 +1,46 @@
 import { SearchOutlined } from "@ant-design/icons";
 import type { InputRef } from "antd";
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Space, Table, message } from "antd";
 import type { ColumnsType, ColumnType } from "antd/es/table";
 import type { FilterConfirmProps } from "antd/es/table/interface";
 import React, { useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
+import { useNavigate } from "react-router-dom";
 
 import ContactInterface from "./interface/contactInterface";
 import ContactDetails from "./ContactDetails";
+import { removeContact } from "../../services/contactService";
+import { verifyToken } from "../../services/userService";
 
 interface dataProps {
   data: ContactInterface[];
+  handler: () => void;
 }
 
 type DataIndex = keyof ContactInterface;
 
-const App: React.FC<dataProps> = ({ data }) => {
-  console.log(data);
-
+const App: React.FC<dataProps> = ({ data, handler }) => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef<InputRef>(null);
+  const navigate = useNavigate();
+
+  const onDelete = async (id: number) => {
+    verifyToken();
+    await removeContact(id)
+      .then(() => {
+        navigate("/");
+        handler();
+        message.success("Contact successfully deleted.", 5);
+      })
+      .catch((err) => {
+        const errMsg = "unexpected error occurred. Please try agin later!";
+        message.error({
+          content: errMsg,
+          duration: 5,
+        });
+      });
+  };
 
   const handleSearch = (
     selectedKeys: string[],
@@ -154,6 +174,7 @@ const App: React.FC<dataProps> = ({ data }) => {
       render: (_, record) => (
         <Space size="middle">
           <ContactDetails contactId={record.contact_id} />
+          <Button onClick={() => onDelete(record.contact_id)}>Delete</Button>
         </Space>
       ),
     },

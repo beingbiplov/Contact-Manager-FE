@@ -21,3 +21,10 @@ export const getRequest = async (url: string, token: string = "") => {
   });
   return res;
 };
+
+export const deleteRequest = async (url: string, token: string = "") => {
+  const res = await server.delete(url, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res;
+};
