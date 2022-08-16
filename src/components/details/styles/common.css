@@ -1,0 +1,9 @@
+.details_card{
+  display: flex;
+  justify-content: center;
+  padding: 10% 0;
+}
+
+.details_card .ant-card {
+  width: 600px!important;
+}

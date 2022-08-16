@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Form, Typography, Button, message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 import UserRegistrationForm from "../forms/UserRegistrationForm";
 import "./styles/userRegistration.css";
@@ -11,6 +12,7 @@ const { Title } = Typography;
 
 const UserRegistration: React.FC = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (values: any) => {
     await registerUser(values)
@@ -19,6 +21,7 @@ const UserRegistration: React.FC = () => {
           "User registered successfully. Please log in to continue.",
           5
         );
+        navigate("/login");
       })
       .catch((err) => {
         const errMsg =

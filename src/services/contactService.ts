@@ -52,3 +52,12 @@ export const updateContact = async (id: number, data: any) => {
 
   return res;
 };
+
+export const getFavContacts = async () => {
+  const token = getAccessTokenFromCookie();
+  const res = await getRequest("/contacts/favorite", token).catch((err) => {
+    throw err;
+  });
+
+  return res;
+};
