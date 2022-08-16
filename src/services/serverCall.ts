@@ -28,3 +28,14 @@ export const deleteRequest = async (url: string, token: string = "") => {
   });
   return res;
 };
+
+export const putRequest = async (
+  url: string,
+  data: any,
+  token: string = ""
+) => {
+  const res = await server.put(url, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res;
+};

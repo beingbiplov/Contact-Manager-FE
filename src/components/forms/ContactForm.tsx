@@ -1,5 +1,4 @@
 import { Select, Form, Input, Button, Checkbox, Upload } from "antd";
-import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { UploadOutlined } from "@ant-design/icons";
 
 import React from "react";
@@ -7,9 +6,6 @@ import React from "react";
 const { Option } = Select;
 
 const ContactForm: React.FC = () => {
-  const onCheckBoxChange = (e: CheckboxChangeEvent) => {
-    console.log(`checked = ${e.target.checked}`);
-  };
   return (
     <React.Fragment>
       <Form.Item
@@ -79,8 +75,8 @@ const ContactForm: React.FC = () => {
       >
         <Input style={{ width: "68%" }} placeholder="Enter address" />
       </Form.Item>
-      <Form.Item name="isFav" label="Favorite" valuePropName="checked">
-        <Checkbox onChange={onCheckBoxChange} />
+      <Form.Item name="is_favorite" label="Favorite" valuePropName="checked">
+        <Checkbox />
       </Form.Item>
 
       <Form.Item name="picture" label="Picture" valuePropName="checked">

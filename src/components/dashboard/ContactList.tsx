@@ -1,4 +1,4 @@
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, HeartFilled } from "@ant-design/icons";
 import type { InputRef } from "antd";
 import { Button, Input, Space, Table, message } from "antd";
 import type { ColumnsType, ColumnType } from "antd/es/table";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import ContactInterface from "./interface/contactInterface";
 import ContactDetails from "./ContactDetails";
+import UpdateContact from "./UpdateContact";
 import { removeContact } from "../../services/contactService";
 import { verifyToken } from "../../services/userService";
 
@@ -147,6 +148,16 @@ const App: React.FC<dataProps> = ({ data, handler }) => {
       sorter: (a: ContactInterface, b: ContactInterface): number =>
         a.name.localeCompare(b.name),
       ...getColumnSearchProps("name"),
+      render: (text, record) => (
+        <span>
+          {record.name}{" "}
+          {record.is_favorite ? (
+            <HeartFilled className="contact-details heart heart_full" />
+          ) : (
+            ""
+          )}
+        </span>
+      ),
     },
     {
       title: "Phone",
@@ -174,7 +185,13 @@ const App: React.FC<dataProps> = ({ data, handler }) => {
       render: (_, record) => (
         <Space size="middle">
           <ContactDetails contactId={record.contact_id} />
-          <Button onClick={() => onDelete(record.contact_id)}>Delete</Button>
+          <UpdateContact data={record} reloadHandler={handler} />
+          <Button
+            className="deleteBtn"
+            onClick={() => onDelete(record.contact_id)}
+          >
+            Delete
+          </Button>
         </Space>
       ),
     },

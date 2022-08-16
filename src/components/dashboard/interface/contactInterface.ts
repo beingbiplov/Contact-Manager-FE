@@ -28,3 +28,8 @@ export interface contactInterfaceProps {
 export interface ReloadHandlerProps {
   reloadHandler: () => void;
 }
+
+export interface contactWithReloaderProps {
+  data: ContactInterface;
+  reloadHandler: () => void;
+}
