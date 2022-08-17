@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
 import { message } from "antd";
 
-import { postRequest } from "./serverCall";
+import { postRequest, getRequest, putRequest } from "./serverCall";
 
 import {
   getAccessTokenFromCookie,
@@ -61,4 +61,23 @@ export const verifyToken = async () => {
   } else {
     await getAccessTokenFromRefresh();
   }
+};
+
+export const getUserById = async (id: number) => {
+  const token = getAccessTokenFromCookie();
+
+  const res = await getRequest(`/users/${id}`, token).catch((err) => {
+    throw err;
+  });
+
+  return res;
+};
+
+export const updateUser = async (id: number, data: any) => {
+  const token = getAccessTokenFromCookie();
+  const res = await putRequest(`/users/${id}`, data, token).catch((err) => {
+    throw err;
+  });
+
+  return res;
 };

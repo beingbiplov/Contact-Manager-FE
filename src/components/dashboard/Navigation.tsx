@@ -15,7 +15,7 @@ const Navigation: React.FC = () => {
     <Menu
       items={[
         {
-          label: <a href="#">Edit User Details</a>,
+          label: <Link to="/user/update">Edit User Details</Link>,
           key: "0",
         },
         {

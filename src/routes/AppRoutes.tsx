@@ -8,6 +8,7 @@ import Dashboard from "../components/dashboard/Dashboard";
 import DetailsPage from "../components/details/DetailsPage";
 import Navigation from "../components/dashboard/Navigation";
 import Unauthorized from "../components/errorResponse/Unauthorized";
+import UserUpdate from "../components/details/UpdateUserDetails";
 
 function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ function AppRoutes() {
           <Route path="/" element={<Navigation />}>
             <Route index element={<Dashboard />} />
             <Route path="/contact/:id" element={<DetailsPage />} />
+            <Route path="user/update" element={<UserUpdate />} />
           </Route>
         </Route>
       </Routes>

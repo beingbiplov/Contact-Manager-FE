@@ -58,3 +58,7 @@ export const getUserDataFromCookie = () => {
 
   return { name: userName, email: userEmail, id: id };
 };
+
+export const setUserNameToCookie = (data: any) => {
+  Cookies.set("userName", data.name);
+};
