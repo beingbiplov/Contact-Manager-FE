@@ -1,6 +1,4 @@
 import {
-  EditOutlined,
-  DeleteOutlined,
   PhoneOutlined,
   UserOutlined,
   MailOutlined,

@@ -9,6 +9,9 @@ export const setCookieOnLogin = (loginResponseData: any) => {
     expires: getExpiryDateInMin(5),
   });
   Cookies.set("refreshToken", loginResponseData.data.refreshToken);
+  Cookies.set("userName", loginResponseData.data.userData.name);
+  Cookies.set("userEmail", loginResponseData.data.userData.email);
+  Cookies.set("userId", loginResponseData.data.userData.id);
 };
 
 export const checkUserAuthentication = (): boolean => {
@@ -37,4 +40,25 @@ export const removeUserAuthCookie = () => {
   Cookies.set("isAuthenticated", "false");
   Cookies.remove("accessToken");
   Cookies.remove("refreshToken");
+  Cookies.set("userName", "");
+  Cookies.set("userEmail", "");
+  Cookies.set("userId", "");
+};
+
+export const getUserDataFromCookie = () => {
+  let id;
+  const userName = Cookies.get("userName");
+  const userEmail = Cookies.get("userEmail");
+  const userId = Cookies.get("userId");
+  if (userId) {
+    id = +userId;
+  } else {
+    id = 0;
+  }
+
+  return { name: userName, email: userEmail, id: id };
+};
+
+export const setUserNameToCookie = (data: any) => {
+  Cookies.set("userName", data.name);
 };

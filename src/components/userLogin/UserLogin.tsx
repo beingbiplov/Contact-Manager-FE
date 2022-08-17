@@ -9,6 +9,7 @@ import { tailFormItemLayout } from "../forms/common";
 import logo from "../../assets/logo.png";
 import { loginUser } from "../../services/userService";
 import { setUserAuthState } from "../../redux/slice/userAuthenticationSlice";
+import { setUserData } from "../../redux/slice/userDataSlice";
 import { setCookieOnLogin } from "../../cookie/authCookie";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +25,7 @@ const UserLogin: React.FC = () => {
       .then((data) => {
         setCookieOnLogin(data.data);
         dispatch(setUserAuthState(true));
+        dispatch(setUserData(data.data.data.userData));
         message.success("User logged in successfully.", 5);
         navigate("/");
       })

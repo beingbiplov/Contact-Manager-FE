@@ -1,5 +1,4 @@
-import { Select, Form, Input, Button, Checkbox, Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import { Select, Form, Input, Checkbox } from "antd";
 
 import React from "react";
 
