@@ -6,7 +6,7 @@ export const setCookieOnLogin = (loginResponseData: any) => {
   Cookies.set("isAuthenticated", "true");
 
   Cookies.set("accessToken", loginResponseData.data.accessToken, {
-    expires: getExpiryDateInMin(5),
+    expires: getExpiryDateInMin(15),
   });
   Cookies.set("refreshToken", loginResponseData.data.refreshToken);
   Cookies.set("userName", loginResponseData.data.userData.name);
